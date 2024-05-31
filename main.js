@@ -9,28 +9,32 @@ class LinkedList {
         if(this.list === null){
             return this.list = new Node(value)
         };
-        let current = this.list
-        while(current.nextNode !== null){
-            current = current.nextNode;
-        }
-       
-        current.nextNode = new Node(value);
+        this.tail().nextNode = new Node(value)
     }
     prepend(value){
-
+        if(this.list === null){
+            return this.list = new Node(value)
+        };
+        this.list = new Node(value, this.list)
     }
     size(){
-
+        let current = this.list;
+        let length = 0;
+        while(current.nextNode !== null){
+            current = current.nextNode;
+            length += 1
+        }
+        return length + 1
     }
     head(){
-         return console.log(this.list)
+         return this.list
     }
     tail(){
         let current = this.list;
         while(current.nextNode !== null){
             current = current.nextNode;
         }
-        return console.log(current)
+        return current
     }
     at(index){
 
@@ -46,7 +50,6 @@ class LinkedList {
     }
     toString(){
         let n = new Node()
-       
         return "yes"
     }
 
@@ -60,13 +63,16 @@ class Node{
 }
 
 const myList = new LinkedList();
+
 myList.append(21)
 myList.append(12)
 myList.append(44)
+myList.prepend(11)
 myList.append(2000)
-myList.head();
-myList.tail()
 
+console.log(myList.size())
+console.log(myList.head())
+console.log(myList.tail())
 console.log(myList)
 
 
