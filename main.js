@@ -37,20 +37,61 @@ class LinkedList {
         return current
     }
     at(index){
-
+        let current = this.list;
+        for(let i = 0; i < this.size(); i++){
+            if(index === i){
+                return current
+            }
+            current = current.nextNode;
+        }
+        return current
     }
     pop(){
+        let current = this.list;
+        for(let i = 1; i < this.size() - 1; i++){
+            current = current.nextNode;
+            
 
+        }
+         current.nextNode = null
     }
     contains(value){
+        let current = this.list;
+        for(let i = 1; i < this.size(); i++){
+            if(current.value === value){
+                return true
+            }
+            current = current.nextNode;
+        }
+        return false
 
     }
     find(value){
+        let current = this.list;
+        for(let i = 0; i < this.size(); i++){
+            if(current.value === value){
+                return i
+            }
+            current = current.nextNode;
+        }
+        return current
 
     }
     toString(){
-        let n = new Node()
-        return "yes"
+        let current = this.list;
+        let element;
+        let stringList = '';
+        for(let i = 0; i < this.size(); i++){
+            if(current.value === null){
+                return stringList += null
+            }
+            element = `(${current.value}) -> `
+            stringList += element
+           
+            current = current.nextNode;
+        }
+        stringList += ' null'
+       return stringList
     }
 
 }
@@ -70,9 +111,15 @@ myList.append(44)
 myList.prepend(11)
 myList.append(2000)
 
+console.log(myList.at(4))
+myList.pop()
+
 console.log(myList.size())
 console.log(myList.head())
 console.log(myList.tail())
+console.log(myList.contains(21))
+console.log(myList.find(44))
+console.log(myList.toString())
 console.log(myList)
 
 
