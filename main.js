@@ -50,8 +50,6 @@ class LinkedList {
         let current = this.list;
         for(let i = 1; i < this.size() - 1; i++){
             current = current.nextNode;
-            
-
         }
          current.nextNode = null
     }
@@ -85,14 +83,32 @@ class LinkedList {
             if(current.value === null){
                 return stringList += null
             }
-            element = `(${current.value}) -> `
+            element = `( ${current.value} ) -> `
             stringList += element
-           
             current = current.nextNode;
         }
         stringList += ' null'
        return stringList
     }
+    insertAt(value, index){
+        let element = this.at(index);
+        let current = this.list;
+        element = new Node(value, element);
+        for(let i = 0; i < index - 1;i++){
+            current = current.nextNode
+        }
+        current.nextNode = element;
+    }
+    removeAt(index){
+        let nextIndex = this.at(index + 1);
+        let current = this.list;
+        for(let i = 0; i < index - 1; i++){
+            console.log(current)
+            current = current.nextNode
+        }
+        current.nextNode = nextIndex
+    }
+
 
 }
 
@@ -110,6 +126,8 @@ myList.append(12)
 myList.append(44)
 myList.prepend(11)
 myList.append(2000)
+myList.insertAt(14, 2)
+myList.removeAt(1)
 
 console.log(myList.at(4))
 myList.pop()
